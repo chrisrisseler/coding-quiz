@@ -1,32 +1,51 @@
 header {
     height: 30px;
-    background-color: #E98A15;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    background-color: #40434E;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #FFFFFA;
 }
 
 body{
-    background-color: #9FB798;
+    background-color: #080705;
+    color: #FFFFFA;
+}
+
+#highScoreButton{
+    background-color:#E98A15 ;
+    color: #080705;
+}
+#startButton{
+    background-color:#E98A15 ;
+    color: #080705;
+}
+
+#score {
+    float:left;
+}
+
+#timer {
+    float: right;
 }
 
 #A{
-    background-color: #28587b;
-    color:  #E98A15;
+    background-color: #702632;
+    color:   #FFFFFA;
 
 }
 #B{
-    background-color: #5da9e9;
-    color:  #E98A15
+    background-color: #912F40;
+    color:   #FFFFFA;
 }
 #C{
-    background-color: #28587b;
-    color:  #E98A15
+    background-color: #702632;
+    color:   #FFFFFA;
 }
 #D{
-    background-color:#5da9e9;
-    color:  #E98A15;
+    background-color:#912F40;
+    color:   #FFFFFA;
 }
 #question{
-    background-color:#A28497;
-    color:  #E98A15;
+    background-color: #FFFFFA;
+    color:   #28587b;
 
 }

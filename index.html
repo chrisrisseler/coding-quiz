@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
         crossorigin="anonymous"></script>
-    <!-- <link rel="stylesheet" href=style.css> -->
+    <link rel="stylesheet" href=style.css>
     <title>Coding Quiz</title>
 </head>
 
@@ -23,34 +23,38 @@
         </div>
     </header>
     <div class="container">
-        <div class = "buttons">
-            <button id = "startButton">
-                Press to start Quiz                
+        <div class="buttons">
+            <button id="startButton">
+                Press to start Quiz
             </button>
-            <button id = "highScoreButton">
+            <button id="highScoreButton">
                 Press to go to High Scores
             </button>
         </div>
-        <div id="quiz" style = "display: none">
+        <div id="quiz" style="display: none">
             <div id=question>
 
             </div>
             <div id="answers">
-                <div id = "A"></div>
-                <div id = "B"></div>
-                <div id = "C"></div>
-                <div id = "D"></div>
+                <div id="A"></div>
+                <div id="B"></div>
+                <div id="C"></div>
+                <div id="D"></div>
             </div>
 
 
 
         </div>
+        <div id="high-score" style="display: none;">
+            <input id="scoreName" placeholder="name"><button id="submit">Submit</button>
+            <div id="scoreArea"></div>
 
+        </div>
 
 
 
     </div>
-<script src = "script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 

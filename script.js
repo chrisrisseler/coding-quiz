@@ -1,6 +1,6 @@
 var start = document.getElementById("startButton");
 var quiz = document.getElementById("quiz");
-var score = document.getElementById("score")
+var scoreEl = document.getElementById("score")
 var highScore = document.getElementById("highScoreButton");
 var questionDiv = document.getElementById("question");
 var choiceA = document.getElementById("A");
@@ -8,23 +8,27 @@ var choiceB = document.getElementById("B");
 var choiceC = document.getElementById("C");
 var choiceD = document.getElementById("D");
 var timerEl = document.getElementById("timer")
+var highScoreEl = document.getElementById("high-score")
+var userName = document.getElementById("scoreName")
+var scoreArea = document.getElementById("scoreArea")
+var submit = document.getElementById("submit")
 
 
+var timer = 70;
+
+function startTimer() {
 
 
-function startTimer(){
-    var timer = 70;
-
-    var timeInterval = setInterval(function(){
-        if (timer > 1){
+    var timeInterval = setInterval(function () {
+        if (timer > 1) {
             timerEl.textContent = timer + " seconds";
-            timer --;
+            timer--;
         }
-        else if (timer === 1){
+        else if (timer === 1) {
             timerEl.textContent = timer + "second";
-            timer --;
+            timer--;
         }
-        else{
+        else {
             timerEl.textContent = ""
             clearInterval(timeInterval)
         }
@@ -35,6 +39,8 @@ function startTimer(){
 
 score = 0
 var userChoice = ""
+
+var questionIndex = 0
 
 var questions = [
     {
@@ -105,51 +111,85 @@ start.addEventListener("click", function () {
 
 
 function renderQuestion() {
-    
-    for (i = 0; i < questions.length; i++) {
-        questionDiv.textContent = questions[i].question
 
-        var buttonA = document.createElement("button")
-        buttonA.textContent = "Choice A"
-        choiceA.textContent = questions[i].choiceA
-        choiceA.appendChild(buttonA)
+    questionDiv.textContent = questions[questionIndex].question
 
-        var buttonB = document.createElement("button")
-        buttonB.textContent = "Choice B"
-        choiceB.textContent = questions[i].choiceB
-        choiceB.appendChild(buttonB)
+    var buttonA = document.createElement("button")
+    buttonA.textContent = "Choice A"
+    choiceA.textContent = questions[questionIndex].choiceA
+    choiceA.appendChild(buttonA)
 
-        var buttonC = document.createElement("button")
-        buttonC.textContent = "Choice C"
-        choiceC.textContent = questions[i].choiceC
-        choiceC.appendChild(buttonC)
+    var buttonB = document.createElement("button")
+    buttonB.textContent = "Choice B"
+    choiceB.textContent = questions[questionIndex].choiceB
+    choiceB.appendChild(buttonB)
 
-        var buttonD = document.createElement("button")
-        buttonD.textContent = "Choice D"
-        choiceD.textContent = questions[i].choiceD
-        choiceD.appendChild(buttonD)
+    var buttonC = document.createElement("button")
+    buttonC.textContent = "Choice C"
+    choiceC.textContent = questions[questionIndex].choiceC
+    choiceC.appendChild(buttonC)
 
-        buttonA.addEventListener("click", function () {
-            userChoice = "A"
-            // console.log(userChoice)
-        })
-        buttonA.addEventListener("click", function () {
-            userChoice = "B"
-        })
-        buttonA.addEventListener("click", function () {
-            userChoice = "C"
-        })
-        buttonA.addEventListener("click", function () {
-            userChoice = "D"
-        })
+    var buttonD = document.createElement("button")
+    buttonD.textContent = "Choice D"
+    choiceD.textContent = questions[questionIndex].choiceD
+    choiceD.appendChild(buttonD)
+
+    buttonA.addEventListener("click", function () {
+        userChoice = "A";
+        // console.log(userChoice)
+
+        handleAnswer();
+    })
+    buttonB.addEventListener("click", function () {
+        userChoice = "B";
+
+        handleAnswer();
+    })
+    buttonC.addEventListener("click", function () {
+        userChoice = "C";
+
+        handleAnswer();
+    })
+    buttonD.addEventListener("click", function () {
+        userChoice = "D";
+
+        handleAnswer();
+    })
 
 
-        // console.log(questions[i].correct)
-        if(questions[i].correct === userChoice){
-            score++
+    // console.log(questions[i].correct)
+
+    function handleAnswer() {
+        if (questions[questionIndex]["correct"] === userChoice) {
+            score++;
+            scoreEl.textContent = score
         }
+        else {
+            timer -= 20;
 
-
+            timerEl.textContent = timer
+        }
+        questionIndex++;
+        renderQuestion()
     }
+
 }
 
+function gameOver() {
+    quiz.style.display = "none";
+    highScoreEl.style.display = "block";
+    localStorage.setItem("score", score)
+    submit.addEventListener("click", function () {
+        localStorage.setItem("name", userName)
+
+
+
+    })
+}
+
+if (timer === 0) {
+    gameOver()
+}
+
+
+scoreEl.textContent = score
